@@ -1,0 +1,27 @@
+
+<div class="container">
+    <div *ngIf="!taskId">
+        <p class="alert alert-danger"> There is no task ID</p>    
+    </div>
+
+    <div *ngIf="taskId">
+        <h2 class="text-center">Details of {{task.title}}</h2>
+
+        <div class="form-group d-flex justify-content-center ">
+            <label class="title">Title:</label>
+            <input type="text" class="form-control" placeholder="Title..." [(ngModel)]="task.title">
+            <label class="title">Date:</label>
+            <input [(ngModel)]="task.date" type="date" class="form-control" >
+            <label class="title">Time:</label>
+            <input [(ngModel)]="task.time" type="time" class="form-control">
+        
+            <div class="d-flex">
+                <button class="btn btn-success " (click)="updateTask()">Update</button>        
+                <a class="btn btn-info mx-2" routerLink="/">Cancel</a>
+            </div>
+            
+        </div>
+        
+    
+    </div>
+</div>

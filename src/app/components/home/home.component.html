@@ -1,0 +1,47 @@
+<div class="container">
+
+    <div class="block text-center">
+        <h1>List of Tasks</h1>
+        <div>
+            <a routerLink="/add-task" class="add-task-btn btn btn-secondary">Add Task</a>
+        </div>
+        <p class="task-count" > Выполнено {{ showCompletedTasks.length }} из {{ TasksService.tasks.length }} задач</p>
+        <form class="py-2 ">
+            <label class="mx-2">От:&nbsp;</label>
+            <input type="date" [(ngModel)]="startDate"  name="startDate">
+            <label class="mx-2">До:&nbsp; </label>
+            <input type="date" [(ngModel)]="endDate"  name="endDate" > 
+            <button type="button" class="btn btn-secondary mx-2" (click)="filterTasks(date)">Фильтровать</button>
+          </form>
+    </div>   
+    
+
+
+<div *ngIf="TasksService.tasks.length == 0">
+    <p class="alert alert-danger">
+        No tasks
+    </p>
+</div>
+
+<div *ngIf="TasksService.tasks.length != 0">
+    <ul class="list-group">    
+        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let task of TasksService.tasks; index as i">
+        <input type="checkbox"  class="checkbox"  (click)="markAsCompleted(task)">
+
+        <div class="row ">
+            <div class="col-sm">
+                <a [routerLink]="['/task', i]" class="link"> <h5>{{task.title}}</h5> </a>
+            </div>
+            <div class="col-md-auto">
+                <div class="d-flex px-2"> <p class="bold" >Date: </p>{{task.date}}</div>
+            </div>
+            <div class="col-sm d-flex  ">
+                <div class="d-flex px-2 "> <p class="bold" >Time:</p> {{task.time}}</div>
+            </div>
+        </div> 
+        <button class=" del-button btn btn-danger" (click)="deleteTask(i)">&times;</button>
+        </li>
+    </ul>
+</div>
+
+</div>

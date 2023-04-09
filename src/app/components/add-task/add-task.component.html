@@ -1,0 +1,20 @@
+<div class="container">
+
+    <h2 class="text-center my-2">Add New Task</h2>
+    <div class="form-group d-flex justify-content-center ">
+        <label class="title">Title:</label>
+        <input [(ngModel)]="title" type="text" class="form-control" placeholder="title task...">
+        <label class="title">Date:</label>
+        <input [(ngModel)]="date" type="date" class="form-control" >
+        <label class="title">Time:</label>
+        <input [(ngModel)]="time" type="time" class="form-control">
+    
+        <div class="d-flex">
+            <button class="btn btn-success " (click)="saveTask()">Save</button>
+            <a class="btn btn-primary mx-2" routerLink="/">Cancel</a>
+        </div>
+        
+    </div>
+    
+
+</div>

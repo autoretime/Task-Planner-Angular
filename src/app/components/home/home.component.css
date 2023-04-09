@@ -1,0 +1,39 @@
+.del-button{
+    float: right;
+}
+.add-task-btn{
+    margin:10px 0 ;
+}
+
+li:nth-child(odd){
+    background-color:#FFFFFF;
+    border-left: 6px solid red;
+}
+
+li:nth-child(even){
+    background-color:#F2F2F2;
+    border-left: 6px solid rgb(96,96,247);
+}
+
+.bold{
+    font-weight: 700;
+}
+
+.link{
+    text-decoration: none;
+    color: darkgreen;
+}
+
+.link:hover{
+    text-decoration: underline;
+    color: darkgreen;
+}
+
+.checkbox{
+    width: 20px;
+    height: 20px;
+}
+
+.task-count{
+    font-weight: 700;
+}
