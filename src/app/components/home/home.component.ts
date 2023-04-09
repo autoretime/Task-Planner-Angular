@@ -13,14 +13,19 @@ export class HomeComponent implements OnInit {
   showCompleted: boolean = false;
   completed: Task[] = []
   showCompletedTasks: Task[] = [];
+  taskFilteredByDate: Task[] = []
   date: string = '';
   startDate: any;
   endDate: any;
+  
 
  
   constructor(public TasksService:TasksService){}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+   this.showCompletedTasks = this.TasksService.tasks.filter(task => task.complete == true);
+  
+  }
 
   markAsCompleted(task: Task) {
     task.complete = !task.complete;    
@@ -36,9 +41,14 @@ export class HomeComponent implements OnInit {
   deleteTask(i:number){
     this.TasksService.deleteTask(i);
   }
+  
 
-  filterTasks(date: string){
-    this.TasksService.filterTasks(date);
+  filterTasks(startDate: string, endDate: string){
+    this.TasksService.filterTasks(new Date (startDate), new Date (endDate));
+    console.log(startDate);
+    console.log(endDate);
+    console.log(this.taskFilteredByDate);   
+    
   }
 
 }

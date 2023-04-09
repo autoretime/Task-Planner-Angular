@@ -7,19 +7,13 @@ import * as moment from 'moment';
 })
 export class TasksService {
 
-  tasks: Task[]= []; 
-  completedTasks: Task[] = [];
-  filteredTasks: any[] = []; 
-  selectedDate: string = ''; 
+  tasks: Task[]= [];   
   
   constructor() { 
 
     let storedTasks = localStorage.getItem('tasks');
     if (storedTasks) {
       this.tasks = JSON.parse(storedTasks)
-      this.tasks.forEach(task => {
-        task.complete = false;  
-      });
     } else {
       this.tasks = []
     }
@@ -59,9 +53,11 @@ export class TasksService {
     this.storeTasks();
   }
 
-  filterTasks(date: string) {
-    this.selectedDate = date;
-    this.filteredTasks = this.tasks.filter(task => task.date === date);
+  filterTasks(startDate: Date, endDate: Date) {
+    return  this.tasks.filter((task) => {
+      const taskDate = new Date(task.date);
+      return taskDate >= startDate && taskDate <=endDate;
+    });
   }
 
   storeTasks(){

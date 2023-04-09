@@ -6,13 +6,13 @@
             <a routerLink="/add-task" class="add-task-btn btn btn-secondary">Add Task</a>
         </div>
         <p class="task-count" > Выполнено {{ showCompletedTasks.length }} из {{ TasksService.tasks.length }} задач</p>
-        <form class="py-2 ">
+        <!-- <form class="py-2 ">
             <label class="mx-2">От:&nbsp;</label>
             <input type="date" [(ngModel)]="startDate"  name="startDate">
             <label class="mx-2">До:&nbsp; </label>
             <input type="date" [(ngModel)]="endDate"  name="endDate" > 
-            <button type="button" class="btn btn-secondary mx-2" (click)="filterTasks(date)">Фильтровать</button>
-          </form>
+            <button type="button" class="btn btn-secondary mx-2" (click)="filterTasks(startDate ,endDate )">Фильтровать</button>
+          </form> -->
     </div>   
     
 
@@ -24,22 +24,29 @@
 </div>
 
 <div *ngIf="TasksService.tasks.length != 0">
-    <ul class="list-group">    
-        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let task of TasksService.tasks; index as i">
-        <input type="checkbox"  class="checkbox"  (click)="markAsCompleted(task)">
+    <!-- *ngIf="TasksService.tasks == taskFilteredByDate" -->
+    <ul class="list-group" >    
+        <li class="list-group-item " *ngFor="let task of TasksService.tasks; index as i">
 
-        <div class="row ">
-            <div class="col-sm">
+        <div class="row d-flex align-items-center  ">
+            <div class="col">
+                <input type="checkbox"  class="checkbox"  (click)="markAsCompleted(task)" [(ngModel)]="task.complete">
+
+            </div>
+            <div class="col">
                 <a [routerLink]="['/task', i]" class="link"> <h5>{{task.title}}</h5> </a>
             </div>
-            <div class="col-md-auto">
-                <div class="d-flex px-2"> <p class="bold" >Date: </p>{{task.date}}</div>
+            <div class="col">
+                <div class="d-flex px-2"> <p class="bold" >Date:&nbsp; </p>{{task.date}}</div>
             </div>
-            <div class="col-sm d-flex  ">
-                <div class="d-flex px-2 "> <p class="bold" >Time:</p> {{task.time}}</div>
+            <div class="col  ">
+                <div class="d-flex px-2 "> <p class="bold" >Time:&nbsp;</p> {{task.time}}</div>
+            </div>
+            <div class="col">
+                <button class=" del-button btn btn-danger" (click)="deleteTask(i)">&times;</button>
+
             </div>
         </div> 
-        <button class=" del-button btn btn-danger" (click)="deleteTask(i)">&times;</button>
         </li>
     </ul>
 </div>
